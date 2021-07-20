@@ -5,10 +5,40 @@
   padding: 5px;
 }
 
+.container {
+  border: 1px solid black;
+  margin: 1% 1%;
+}
+
+#displayController {
+  display: flex;
+  justify-content: center;
+}
+
+#markerSelect {
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
+}
+
+button {
+  background-color: rgba(192, 192, 192, 1);
+  width: 100px;
+
+  border: 1px solid black;
+  border-radius: 5px;
+
+  font-size: 16px;
+  font-weight: bold;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 #gameBoard {
   background-color: black;
-  margin: 0 auto;
-  margin-top: 5%;
+  margin: 1% auto;
   width: 300px;
   height: 300px;
   display: grid;
@@ -23,6 +53,15 @@
   height: 100%;
   justify-self: center;
   align-self: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 32px;
+  font-weight: bold;
+
+  user-select: none;
 }
 
 .gridSquare:hover {

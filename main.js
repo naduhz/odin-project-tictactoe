@@ -1,6 +1,12 @@
 const gameBoard = (() => {
   const board = Array.from(document.querySelector("#gameBoard").children);
-  console.log(board);
+  board.forEach((square) => {
+    square.addEventListener("click", () => {
+      if (!square.textContent) {
+        square.textContent = "\u25EF";
+      } else return;
+    });
+  });
 })();
 
 const displayController = (() => {})();
