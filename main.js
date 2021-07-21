@@ -1,6 +1,6 @@
 const CROSS = "\u2715";
 const CIRCLE = "\u25EF";
-let playerMarker = "";
+let playerMarker;
 
 const displayController = (() => {
   const crossMark = document.querySelector("#cross-mark");
@@ -21,10 +21,12 @@ const displayController = (() => {
 
 const gameBoard = (() => {
   const board = Array.from(document.querySelector("#gameBoard").children);
+
   board.forEach((square) => {
     square.addEventListener("click", () => {
       if (!square.textContent) {
         square.textContent = playerMarker;
+        playerMarker = playerMarker == CROSS ? CIRCLE : CROSS;
       } else return;
     });
   });
