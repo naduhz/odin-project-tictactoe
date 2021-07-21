@@ -9,13 +9,17 @@ const displayController = (() => {
   crossMark.addEventListener("click", () => {
     crossMark.classList.add("buttonPressed");
     circleMark.className = "button";
-    playerMarker = CROSS;
+    if (!playerMarker) {
+      playerMarker = CROSS;
+    }
   });
 
   circleMark.addEventListener("click", () => {
     circleMark.classList.add("buttonPressed");
     crossMark.className = "button";
-    playerMarker = CIRCLE;
+    if (!playerMarker) {
+      playerMarker = CIRCLE;
+    }
   });
 })();
 
