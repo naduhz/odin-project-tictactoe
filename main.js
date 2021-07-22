@@ -8,6 +8,7 @@ const displayController = (() => {
   const circleMark = document.querySelector("#circle-mark");
   const turnDisplayer = document.querySelector("#turnDisplayer");
   const clearButton = document.querySelector("#clearButton");
+  const winModal = document.querySelector("#winModal");
 
   crossMark.addEventListener("click", () => {
     if (turnCounter === 0) {
@@ -31,6 +32,16 @@ const displayController = (() => {
     gameBoard.resetBoard();
     turnCounter = 0;
   });
+
+  window.addEventListener("click", closeModal);
+
+  function closeModal(event) {
+    if (event.target == winModal) {
+      winModal.style.display = "none";
+    }
+  }
+
+  return { closeModal };
 })();
 
 const gameBoard = (() => {
@@ -53,18 +64,21 @@ const gameBoard = (() => {
       } else return;
 
       if (turnCounter >= 5 && turnCounter <= 9) {
+        const winModal = document.querySelector("#winModal");
+
         if (turnCounter != 9) {
           const winner = checkForWin();
           if (!winner) return;
 
           // Do this if Win
-          console.log(winner);
+          winModal.style.display = "block";
         } else {
           const winner = checkForWin();
           // Do this if tie
-          if (!winner) console.log("hi");
+          if (!winner) return;
+
           // Do this if Win
-          console.log(winner);
+          winModal.style.display = "block";
         }
       }
 
