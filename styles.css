@@ -1,3 +1,7 @@
+body {
+  margin: 0px;
+}
+
 #title {
   border: 1px solid black;
   width: fit-content;
@@ -85,4 +89,16 @@ button:active {
 
 .gridSquare:hover {
   cursor: pointer;
+}
+
+.modal {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
 }

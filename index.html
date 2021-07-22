@@ -11,7 +11,9 @@
     <header>
       <h1 id="title">Tic Tac Toe</h1>
     </header>
+    
     <div class="container">
+      
       <div class="container" id="displayController">
         <div class="container" id='turnDisplayer'>
           TURN:
@@ -25,8 +27,8 @@
         <div class="container" id='clearBoard'>
           <button id='clearButton'>CLEAR</button>
         </div>
-        
       </div>
+      
       <div id="gameBoard">
         <div class="gridSquare" data-row="0" data-col='0'></div>
         <div class="gridSquare" data-row="0" data-col='1'></div>
@@ -39,6 +41,10 @@
         <div class="gridSquare" data-row="2" data-col='2'></div>
       </div>
     </div>
+
+    <div class='modal' id='winModal'>
+    </div>
+
     <script src="main.js"></script>
   </body>
 </html>
