@@ -29,6 +29,7 @@ const displayController = (() => {
 
   clearButton.addEventListener("click", () => {
     gameBoard.resetBoard();
+    turnCounter = 0;
   });
 })();
 
@@ -37,13 +38,72 @@ const gameBoard = (() => {
   const turnDisplayer = document.querySelector("#turnDisplayer");
 
   board.forEach((square) => {
+    square.setAttribute("data-value", "0");
+
     square.addEventListener("click", () => {
       if (!square.textContent && playerMarker) {
         square.textContent = playerMarker;
+        playerMarker == CROSS
+          ? square.setAttribute("data-value", "1")
+          : square.setAttribute("data-value", "-1");
         playerMarker = playerMarker == CROSS ? CIRCLE : CROSS;
         turnDisplayer.textContent = `TURN: ${playerMarker}`;
         turnCounter += 1;
+
+        checkForWin();
       } else return;
+
+      if (turnCounter >= 5 && turnCounter <= 9) {
+        if (turnCounter != 9) {
+          // check for Win
+          // Do this if win
+        } else {
+          // check for win
+          // Do this if Win
+          // Do this if tie
+        }
+      }
+
+      function checkForWin() {
+        const rows = [];
+        const cols = [];
+        for (let i = 0; i < 3; i++) {
+          rows[i] = Array.from(document.querySelectorAll(`[data-row='${i}']`));
+          cols[i] = Array.from(document.querySelectorAll(`[data-col='${i}']`));
+        }
+
+        const rowsArrayWithValues = rows.map((row) => {
+          return row.map((square) =>
+            parseInt(square.getAttribute("data-value"))
+          );
+        });
+        const colsArrayWithValues = cols.map((col) => {
+          return col.map((square) =>
+            parseInt(square.getAttribute("data-value"))
+          );
+        });
+
+        const rowSums = rowsArrayWithValues.map((row) =>
+          row.reduce((a, b) => a + b)
+        );
+        const colSums = colsArrayWithValues.map((col) =>
+          col.reduce((a, b) => a + b)
+        );
+
+        if (rowSums.includes(3)) {
+          console.log("X wins");
+        } else if (rowSums.includes(-3)) {
+          console.log("O wins");
+        }
+
+        if (colSums.includes(3)) {
+          console.log("X wins");
+        } else if (colSums.includes(-3)) {
+          console.log("O wins");
+        }
+
+        console.log(rowSums, colSums);
+      }
     });
   });
 
