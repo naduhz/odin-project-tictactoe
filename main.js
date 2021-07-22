@@ -46,21 +46,25 @@ const gameBoard = (() => {
         playerMarker == CROSS
           ? square.setAttribute("data-value", "1")
           : square.setAttribute("data-value", "-1");
+
         playerMarker = playerMarker == CROSS ? CIRCLE : CROSS;
         turnDisplayer.textContent = `TURN: ${playerMarker}`;
         turnCounter += 1;
-
-        checkForWin();
       } else return;
 
       if (turnCounter >= 5 && turnCounter <= 9) {
         if (turnCounter != 9) {
-          // check for Win
-          // Do this if win
-        } else {
-          // check for win
+          const winner = checkForWin();
+          if (!winner) return;
+
           // Do this if Win
+          console.log(winner);
+        } else {
+          const winner = checkForWin();
           // Do this if tie
+          if (!winner) console.log("hi");
+          // Do this if Win
+          console.log(winner);
         }
       }
 
@@ -90,19 +94,11 @@ const gameBoard = (() => {
           col.reduce((a, b) => a + b)
         );
 
-        if (rowSums.includes(3)) {
-          console.log("X wins");
-        } else if (rowSums.includes(-3)) {
-          console.log("O wins");
-        }
-
-        if (colSums.includes(3)) {
-          console.log("X wins");
-        } else if (colSums.includes(-3)) {
-          console.log("O wins");
-        }
-
-        console.log(rowSums, colSums);
+        if (rowSums.includes(3) || colSums.includes(3)) {
+          return CROSS;
+        } else if (rowSums.includes(-3) || colSums.includes(-3)) {
+          return CIRCLE;
+        } else return;
       }
     });
   });
