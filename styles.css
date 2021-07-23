@@ -101,4 +101,29 @@ button:active {
   overflow: auto;
   height: 100%;
   width: 100%;
+  animation-name: openModal;
+  animation-duration: 750ms;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: silver;
+  margin: 10% auto;
+  width: 500px;
+  height: 250px;
+  box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  border-radius: 5px;
+}
+
+@keyframes openModal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
