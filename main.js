@@ -31,18 +31,14 @@ const displayController = (() => {
 
   clearButton.addEventListener("click", () => {
     gameBoard.resetBoard();
-    turnCounter = 0;
-    playerMarker = "";
-    turnDisplayer.textContent = `TURN: ${playerMarker}`;
+    resetCounters();
   });
 
   window.addEventListener("click", closeModal);
 
   restartButton.addEventListener("click", () => {
     gameBoard.resetBoard();
-    turnCounter = 0;
-    playerMarker = "";
-    turnDisplayer.textContent = `TURN: ${playerMarker}`;
+    resetCounters();
     resultModal.style.display = "none";
   });
 
@@ -52,7 +48,13 @@ const displayController = (() => {
     }
   }
 
-  return { closeModal };
+  function resetCounters() {
+    turnCounter = 0;
+    playerMarker = "";
+    turnDisplayer.textContent = `TURN: ${playerMarker}`;
+  }
+
+  return { closeModal, resetCounters };
 })();
 
 const gameBoard = (() => {
@@ -91,10 +93,11 @@ const gameBoard = (() => {
           if (!winner) {
             // Do this if tie
             result.textContent = "It's a tie!";
+            resultWinner.textContent = "";
             resultModal.style.display = "block";
             return;
           } else {
-            // Do this if Win
+            // Do this if win
             resultWinner.textContent = `${winner} wins!`;
             resultModal.style.display = "block";
           }
