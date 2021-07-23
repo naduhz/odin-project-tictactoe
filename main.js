@@ -90,6 +90,18 @@ const gameBoard = (() => {
           cols[i] = Array.from(document.querySelectorAll(`[data-col='${i}']`));
         }
 
+        const lrDiagonal = [
+          document.querySelector(`[data-row='0'][data-col='0']`),
+          document.querySelector(`[data-row='1'][data-col='1']`),
+          document.querySelector(`[data-row='2'][data-col='2']`),
+        ];
+        const rlDiagonal = [
+          document.querySelector(`[data-row='0'][data-col='2']`),
+          document.querySelector(`[data-row='1'][data-col='1']`),
+          document.querySelector(`[data-row='2'][data-col='0']`),
+        ];
+        const diagonals = [[...lrDiagonal], [...rlDiagonal]];
+
         const rowsArrayWithValues = rows.map((row) => {
           return row.map((square) =>
             parseInt(square.getAttribute("data-value"))
@@ -100,6 +112,11 @@ const gameBoard = (() => {
             parseInt(square.getAttribute("data-value"))
           );
         });
+        const diagonalsArrayWithValues = diagonals.map((diagonal) => {
+          return diagonal.map((square) =>
+            parseInt(square.getAttribute("data-value"))
+          );
+        });
 
         const rowSums = rowsArrayWithValues.map((row) =>
           row.reduce((a, b) => a + b)
@@ -107,10 +124,21 @@ const gameBoard = (() => {
         const colSums = colsArrayWithValues.map((col) =>
           col.reduce((a, b) => a + b)
         );
+        const diagonalSums = diagonalsArrayWithValues.map((col) =>
+          col.reduce((a, b) => a + b)
+        );
 
-        if (rowSums.includes(3) || colSums.includes(3)) {
+        if (
+          rowSums.includes(3) ||
+          colSums.includes(3) ||
+          diagonalSums.includes(3)
+        ) {
           return CROSS;
-        } else if (rowSums.includes(-3) || colSums.includes(-3)) {
+        } else if (
+          rowSums.includes(-3) ||
+          colSums.includes(-3) ||
+          diagonalSums.includes(-3)
+        ) {
           return CIRCLE;
         } else return;
       }
