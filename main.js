@@ -9,6 +9,7 @@ const displayController = (() => {
   const turnDisplayer = document.querySelector("#turnDisplayer");
   const clearButton = document.querySelector("#clearButton");
   const winModal = document.querySelector("#winModal");
+  const restartButton = document.querySelector("#restartButton");
 
   crossMark.addEventListener("click", () => {
     if (turnCounter === 0) {
@@ -31,9 +32,19 @@ const displayController = (() => {
   clearButton.addEventListener("click", () => {
     gameBoard.resetBoard();
     turnCounter = 0;
+    playerMarker = "";
+    turnDisplayer.textContent = `TURN: ${playerMarker}`;
   });
 
   window.addEventListener("click", closeModal);
+
+  restartButton.addEventListener("click", () => {
+    gameBoard.resetBoard();
+    turnCounter = 0;
+    playerMarker = "";
+    turnDisplayer.textContent = `TURN: ${playerMarker}`;
+    winModal.style.display = "none";
+  });
 
   function closeModal(event) {
     if (event.target == winModal) {
