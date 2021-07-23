@@ -8,7 +8,7 @@ const displayController = (() => {
   const circleMark = document.querySelector("#circle-mark");
   const turnDisplayer = document.querySelector("#turnDisplayer");
   const clearButton = document.querySelector("#clearButton");
-  const winModal = document.querySelector("#winModal");
+  const resultModal = document.querySelector("#resultModal");
   const restartButton = document.querySelector("#restartButton");
 
   crossMark.addEventListener("click", () => {
@@ -43,12 +43,12 @@ const displayController = (() => {
     turnCounter = 0;
     playerMarker = "";
     turnDisplayer.textContent = `TURN: ${playerMarker}`;
-    winModal.style.display = "none";
+    resultModal.style.display = "none";
   });
 
   function closeModal(event) {
-    if (event.target == winModal) {
-      winModal.style.display = "none";
+    if (event.target == resultModal) {
+      resultModal.style.display = "none";
     }
   }
 
@@ -75,21 +75,29 @@ const gameBoard = (() => {
       } else return;
 
       if (turnCounter >= 5 && turnCounter <= 9) {
-        const winModal = document.querySelector("#winModal");
+        const resultModal = document.querySelector("#resultModal");
+        const result = document.querySelector("#result");
+        const resultWinner = document.querySelector("#resultWinner");
 
         if (turnCounter != 9) {
           const winner = checkForWin();
           if (!winner) return;
 
-          // Do this if Win
-          winModal.style.display = "block";
+          // Do this if win
+          resultWinner.textContent = `${winner} wins!`;
+          resultModal.style.display = "block";
         } else {
           const winner = checkForWin();
-          // Do this if tie
-          if (!winner) return;
-
-          // Do this if Win
-          winModal.style.display = "block";
+          if (!winner) {
+            // Do this if tie
+            result.textContent = "It's a tie!";
+            resultModal.style.display = "block";
+            return;
+          } else {
+            // Do this if Win
+            resultWinner.textContent = `${winner} wins!`;
+            resultModal.style.display = "block";
+          }
         }
       }
 
@@ -159,6 +167,7 @@ const gameBoard = (() => {
   const resetBoard = () => {
     board.forEach((square) => {
       square.textContent = "";
+      square.setAttribute("data-value", "0");
     });
   };
 
