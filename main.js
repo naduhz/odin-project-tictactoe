@@ -1,7 +1,8 @@
 const CROSS = "\u2715";
 const CIRCLE = "\u25EF";
 let marker_selected = false;
-let player1, player2;
+let player1 = "",
+  player2 = "";
 let turnCounter = 0;
 
 const playerFactory = (symbol) => {
@@ -16,6 +17,8 @@ const displayController = (() => {
   const clearButton = document.querySelector("#clearButton");
   const resultModal = document.querySelector("#resultModal");
   const restartButton = document.querySelector("#restartButton");
+  const player1display = document.querySelector("#player1display");
+  const player2display = document.querySelector("#player2display");
 
   crossMark.addEventListener("click", () => {
     if (turnCounter === 0) {
@@ -24,7 +27,7 @@ const displayController = (() => {
       marker_selected = true;
       player1 = playerFactory(CROSS);
       player2 = playerFactory(CIRCLE);
-      turnDisplayer.textContent = `TURN: Player 1`;
+      setDisplay();
     }
   });
 
@@ -35,7 +38,7 @@ const displayController = (() => {
       marker_selected = true;
       player1 = playerFactory(CIRCLE);
       player2 = playerFactory(CROSS);
-      turnDisplayer.textContent = `TURN: Player 1`;
+      setDisplay();
     }
   });
 
@@ -58,12 +61,20 @@ const displayController = (() => {
     }
   }
 
+  function setDisplay() {
+    player1display.textContent = `Player 1: ${player1.marker}`;
+    player2display.textContent = `Player 2: ${player2.marker}`;
+    turnDisplayer.textContent = `TURN: Player 1`;
+  }
+
   function resetCounters() {
     turnCounter = 0;
     marker_selected = false;
     player1.marker = "";
     player2.marker = "";
     turnDisplayer.textContent = `TURN:`;
+    player1display.textContent = `Player 1: ${player1.marker}`;
+    player2display.textContent = `Player 2: ${player2.marker}`;
   }
 
   return { closeModal, resetCounters };

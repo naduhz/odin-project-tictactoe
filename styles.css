@@ -20,8 +20,12 @@ body {
   align-items: center;
 }
 
-#turnDisplayer {
+#playersContainer {
   display: flex;
+  flex-direction: row;
+}
+
+#turnDisplayer {
   justify-content: center;
   align-items: center;
 }
