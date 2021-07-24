@@ -1,7 +1,13 @@
 const CROSS = "\u2715";
 const CIRCLE = "\u25EF";
+let marker_selected = false;
+let player1, player2;
 let turnCounter = 0;
-let playerMarker;
+
+const playerFactory = (symbol) => {
+  const marker = symbol;
+  return { marker };
+};
 
 const displayController = (() => {
   const crossMark = document.querySelector("#cross-mark");
@@ -15,8 +21,10 @@ const displayController = (() => {
     if (turnCounter === 0) {
       crossMark.classList.add("buttonPressed");
       circleMark.className = "button";
-      playerMarker = CROSS;
-      turnDisplayer.textContent = `TURN: ${playerMarker}`;
+      marker_selected = true;
+      player1 = playerFactory(CROSS);
+      player2 = playerFactory(CIRCLE);
+      turnDisplayer.textContent = `TURN: Player 1`;
     }
   });
 
@@ -24,8 +32,10 @@ const displayController = (() => {
     if (turnCounter === 0) {
       circleMark.classList.add("buttonPressed");
       crossMark.className = "button";
-      playerMarker = CIRCLE;
-      turnDisplayer.textContent = `TURN: ${playerMarker}`;
+      marker_selected = true;
+      player1 = playerFactory(CIRCLE);
+      player2 = playerFactory(CROSS);
+      turnDisplayer.textContent = `TURN: Player 1`;
     }
   });
 
@@ -50,8 +60,10 @@ const displayController = (() => {
 
   function resetCounters() {
     turnCounter = 0;
-    playerMarker = "";
-    turnDisplayer.textContent = `TURN: ${playerMarker}`;
+    marker_selected = false;
+    player1.marker = "";
+    player2.marker = "";
+    turnDisplayer.textContent = `TURN:`;
   }
 
   return { closeModal, resetCounters };
@@ -65,15 +77,19 @@ const gameBoard = (() => {
     square.setAttribute("data-value", "0");
 
     square.addEventListener("click", () => {
-      if (!square.textContent && playerMarker) {
-        square.textContent = playerMarker;
-        playerMarker == CROSS
+      if (!square.textContent && marker_selected) {
+        square.textContent =
+          turnCounter % 2 === 0 ? player1.marker : player2.marker;
+        square.textContent === CROSS
           ? square.setAttribute("data-value", "1")
-          : square.setAttribute("data-value", "-1");
+          : square.textContent === CIRCLE
+          ? square.setAttribute("data-value", "-1")
+          : square.setAttribute("data-value", "0");
 
-        playerMarker = playerMarker == CROSS ? CIRCLE : CROSS;
-        turnDisplayer.textContent = `TURN: ${playerMarker}`;
         turnCounter += 1;
+        turnDisplayer.textContent = `TURN: ${
+          turnCounter % 2 === 0 ? "Player 1" : "Player 2"
+        }`;
       } else return;
 
       if (turnCounter >= 5 && turnCounter <= 9) {
@@ -82,14 +98,25 @@ const gameBoard = (() => {
         const resultWinner = document.querySelector("#resultWinner");
 
         if (turnCounter != 9) {
-          const winner = checkForWin();
+          const winner =
+            player1.marker === checkForWin()
+              ? "Player 1"
+              : player2.marker === checkForWin()
+              ? "Player 2"
+              : false;
           if (!winner) return;
 
           // Do this if win
           resultWinner.textContent = `${winner} wins!`;
           resultModal.style.display = "block";
         } else {
-          const winner = checkForWin();
+          const winner =
+            player1.marker === checkForWin()
+              ? "Player 1"
+              : player2.marker === checkForWin()
+              ? "Player 2"
+              : false;
+
           if (!winner) {
             // Do this if tie
             result.textContent = "It's a tie!";
@@ -176,7 +203,3 @@ const gameBoard = (() => {
 
   return { resetBoard };
 })();
-
-const playerFactory = () => {
-  return {};
-};
