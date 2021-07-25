@@ -14,25 +14,28 @@
     
     <div class="container">
       <div class="container" id="displayController">
-        <div class="container" id="playersContainer">
-          <div class='container' id='player1display'>Player 1:</div>
-          <div class='container' id='player2display'>Player 2:</div>
-        </div>
+        <div class="container" id="topBar">
+          <div class="container" id='turnDisplayer'>
+            TURN:
+          </div>
 
-        <div class="container" id='turnDisplayer'>
-          TURN:
-        </div>
+          <div class="container" id='markerSelect'>
+            <button id='cross-mark'>&#10005</button>
+            <button id='circle-mark'>&#9711</button>
+          </div>
 
-        <div class="container" id='markerSelect'>
-          <button id='cross-mark'>&#10005</button>
-          <button id='circle-mark'>&#9711</button>
+          <div class="container" id='clearBoard'>
+            <button id='clearButton'>CLEAR</button>
+          </div>
         </div>
-
-        <div class="container" id='clearBoard'>
-          <button id='clearButton'>CLEAR</button>
+        <div class="container" id="bottomBar">
+          <div class="container" id="playersContainer">
+            <div id='player1display'>Player 1:</div>
+            <div id='player2display'>Player 2:</div>
+          </div>
         </div>
       </div>
-      
+
       <div id="gameBoard">
         <div class="gridSquare" data-row="0" data-col='0'></div>
         <div class="gridSquare" data-row="0" data-col='1'></div>

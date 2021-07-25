@@ -3,26 +3,47 @@ body {
 }
 
 #title {
-  border: 1px solid black;
   width: fit-content;
   margin: 0 auto;
   padding: 5px;
 }
 
 .container {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 1% 1%;
 }
 
 #displayController {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#topBar,
+#bottomBar {
+  display: flex;
+  width: 100%;
+}
+
+#topBar {
+  justify-content: space-evenly;
+}
+
+#bottomBar {
+  justify-content: center;
 }
 
 #playersContainer {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+
+#player1display,
+#player2display {
+  margin: auto;
+  padding: 10px;
 }
 
 #turnDisplayer {
