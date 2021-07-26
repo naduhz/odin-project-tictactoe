@@ -1,6 +1,6 @@
 const CROSS = "\u2715";
 const CIRCLE = "\u25EF";
-let marker_selected = false;
+let markerSelected = false;
 let player1 = "",
   player2 = "";
 let turnCounter = 0;
@@ -24,7 +24,7 @@ const displayController = (() => {
     if (turnCounter === 0) {
       crossMark.classList.add("buttonPressed");
       circleMark.className = "button";
-      marker_selected = true;
+      markerSelected = true;
       player1 = playerFactory(CROSS);
       player2 = playerFactory(CIRCLE);
       setDisplay();
@@ -35,7 +35,7 @@ const displayController = (() => {
     if (turnCounter === 0) {
       circleMark.classList.add("buttonPressed");
       crossMark.className = "button";
-      marker_selected = true;
+      markerSelected = true;
       player1 = playerFactory(CIRCLE);
       player2 = playerFactory(CROSS);
       setDisplay();
@@ -69,7 +69,7 @@ const displayController = (() => {
 
   function resetCounters() {
     turnCounter = 0;
-    marker_selected = false;
+    markerSelected = false;
     player1.marker = "";
     player2.marker = "";
     turnDisplayer.textContent = `TURN:`;
@@ -88,7 +88,7 @@ const gameBoard = (() => {
     square.setAttribute("data-value", "0");
 
     square.addEventListener("click", () => {
-      if (!square.textContent && marker_selected) {
+      if (!square.textContent && markerSelected) {
         square.textContent =
           turnCounter % 2 === 0 ? player1.marker : player2.marker;
         square.textContent === CROSS

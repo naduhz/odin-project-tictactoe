@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  /* border: 1px solid black; */
+  border: 1px solid black;
   margin: 1% 1%;
 }
 
@@ -36,13 +36,16 @@ body {
 
 #playersContainer {
   display: flex;
+  width: 30%;
+  min-height: fit-content;
   flex-direction: row;
   justify-content: space-between;
 }
 
 #player1display,
 #player2display {
-  margin: auto;
+  border: 1px solid black;
+  margin: auto 0;
   padding: 10px;
 }
 
