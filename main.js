@@ -117,7 +117,6 @@ const gameBoard = (() => {
               : false;
           if (!winner) return;
 
-          // Do this if win
           resultWinner.textContent = `${winner} wins!`;
           resultModal.style.display = "block";
         } else {
@@ -129,13 +128,11 @@ const gameBoard = (() => {
               : false;
 
           if (!winner) {
-            // Do this if tie
             result.textContent = "It's a tie!";
             resultWinner.textContent = "";
             resultModal.style.display = "block";
             return;
           } else {
-            // Do this if win
             resultWinner.textContent = `${winner} wins!`;
             resultModal.style.display = "block";
           }
