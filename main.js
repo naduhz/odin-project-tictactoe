@@ -17,8 +17,18 @@ const displayController = (() => {
   const clearButton = document.querySelector("#clearButton");
   const resultModal = document.querySelector("#resultModal");
   const restartButton = document.querySelector("#restartButton");
-  const player1display = document.querySelector("#player1display");
-  const player2display = document.querySelector("#player2display");
+  const player1marker = document.querySelector("#p1marker");
+  const player2marker = document.querySelector("#p2marker");
+  const p1name = document.querySelector("#p1name");
+  const p2name = document.querySelector("#p2name");
+
+  p1name.addEventListener("input", (event) => {
+    p1name.value = event.target.value;
+  });
+
+  p2name.addEventListener("input", (event) => {
+    p2name.value = event.target.value;
+  });
 
   crossMark.addEventListener("click", () => {
     if (turnCounter === 0) {
@@ -62,17 +72,19 @@ const displayController = (() => {
   }
 
   function setDisplay() {
-    player1display.textContent = `Player 1: ${player1.marker}`;
-    player2display.textContent = `Player 2: ${player2.marker}`;
+    player1marker.textContent = `Marker: ${player1.marker}`;
+    player2marker.textContent = `Marker: ${player2.marker}`;
     turnDisplayer.textContent = `TURN: Player 1`;
   }
 
+  //TODO: Reset the input fields
   function resetCounters() {
     turnCounter = 0;
     markerSelected = false;
     player1.marker = "";
     player2.marker = "";
     turnDisplayer.textContent = `TURN:`;
+    //TODO: The following needs to be changed
     player1display.textContent = `Player 1: ${player1.marker}`;
     player2display.textContent = `Player 2: ${player2.marker}`;
   }
@@ -107,13 +119,17 @@ const gameBoard = (() => {
         const resultModal = document.querySelector("#resultModal");
         const result = document.querySelector("#result");
         const resultWinner = document.querySelector("#resultWinner");
+        const p1name = document.querySelector("#p1name");
+        const p2name = document.querySelector("#p2name");
+
+        console.log(p1name.value, p2name.value);
 
         if (turnCounter != 9) {
           const winner =
             player1.marker === checkForWin()
-              ? "Player 1"
+              ? p1name.value
               : player2.marker === checkForWin()
-              ? "Player 2"
+              ? p2name.value
               : false;
           if (!winner) return;
 
