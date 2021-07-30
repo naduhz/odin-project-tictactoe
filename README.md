@@ -1,5 +1,5 @@
 # Tic-Tac-Toe
-This is a rather simple Library application that uses the localStorage() for a user to manage their personal collection.
+This is a simple Tic-Tac-Toe game that uses the factory functions to generate players.
 
 # Preview
 <p align="center">
