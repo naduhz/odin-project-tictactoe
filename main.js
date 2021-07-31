@@ -77,16 +77,14 @@ const displayController = (() => {
     turnDisplayer.textContent = `TURN: Player 1`;
   }
 
-  //TODO: Reset the input fields
   function resetCounters() {
     turnCounter = 0;
     markerSelected = false;
     player1.marker = "";
     player2.marker = "";
+    p1name.value = "";
+    p2name.value = "";
     turnDisplayer.textContent = `TURN:`;
-    //TODO: The following needs to be changed
-    player1display.textContent = `Player 1: ${player1.marker}`;
-    player2display.textContent = `Player 2: ${player2.marker}`;
   }
 
   return { closeModal, resetCounters };
