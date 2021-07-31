@@ -74,7 +74,7 @@ const displayController = (() => {
   function setDisplay() {
     player1marker.textContent = `Marker: ${player1.marker}`;
     player2marker.textContent = `Marker: ${player2.marker}`;
-    turnDisplayer.textContent = `TURN: Player 1`;
+    turnDisplayer.textContent = `TURN: ${p1name.value}`;
   }
 
   function resetCounters() {
@@ -98,6 +98,9 @@ const gameBoard = (() => {
     square.setAttribute("data-value", "0");
 
     square.addEventListener("click", () => {
+      const p1name = document.querySelector("#p1name");
+      const p2name = document.querySelector("#p2name");
+
       if (!square.textContent && markerSelected) {
         square.textContent =
           turnCounter % 2 === 0 ? player1.marker : player2.marker;
@@ -109,7 +112,7 @@ const gameBoard = (() => {
 
         turnCounter += 1;
         turnDisplayer.textContent = `TURN: ${
-          turnCounter % 2 === 0 ? "Player 1" : "Player 2"
+          turnCounter % 2 === 0 ? p1name.value : p2name.value
         }`;
       } else return;
 
@@ -117,10 +120,6 @@ const gameBoard = (() => {
         const resultModal = document.querySelector("#resultModal");
         const result = document.querySelector("#result");
         const resultWinner = document.querySelector("#resultWinner");
-        const p1name = document.querySelector("#p1name");
-        const p2name = document.querySelector("#p2name");
-
-        console.log(p1name.value, p2name.value);
 
         if (turnCounter != 9) {
           const winner =
@@ -136,9 +135,9 @@ const gameBoard = (() => {
         } else {
           const winner =
             player1.marker === checkForWin()
-              ? "Player 1"
+              ? p1name.value
               : player2.marker === checkForWin()
-              ? "Player 2"
+              ? p2name.value
               : false;
 
           if (!winner) {
