@@ -1,5 +1,8 @@
 body {
   margin: 0px;
+  background-color: rgba(20, 70, 160, 0.8);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 #title {
@@ -9,7 +12,6 @@ body {
 }
 
 .container {
-  border: 1px solid black;
   margin: 1% 1%;
 }
 
@@ -36,7 +38,7 @@ body {
 
 #playersContainer {
   display: flex;
-  width: 30%;
+  width: fit-content;
   min-height: fit-content;
   flex-direction: row;
   justify-content: space-between;
@@ -44,7 +46,6 @@ body {
 
 #player1display,
 #player2display {
-  border: 1px solid black;
   margin: auto 0;
   padding: 10px;
 }
