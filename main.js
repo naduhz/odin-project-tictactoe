@@ -74,7 +74,15 @@ const displayController = (() => {
   function setDisplay() {
     player1marker.textContent = `Marker: ${player1.marker}`;
     player2marker.textContent = `Marker: ${player2.marker}`;
-    turnDisplayer.textContent = `TURN: ${p1name.value}`;
+    if (!p1name.value) {
+      p1name.value = "Player 1";
+    }
+    if (!p2name.value) {
+      p2name.value = "Player 2";
+    }
+    turnDisplayer.textContent = `TURN: ${
+      p1name.value ? p1name.value : "Player 1"
+    }`;
   }
 
   function resetCounters() {
@@ -111,6 +119,12 @@ const gameBoard = (() => {
           : square.setAttribute("data-value", "0");
 
         turnCounter += 1;
+        if (!p1name.value) {
+          p1name.value = "Player 1";
+        }
+        if (!p2name.value) {
+          p2name.value = "Player 2";
+        }
         turnDisplayer.textContent = `TURN: ${
           turnCounter % 2 === 0 ? p1name.value : p2name.value
         }`;
