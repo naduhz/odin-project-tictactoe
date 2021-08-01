@@ -90,6 +90,8 @@ const displayController = (() => {
     markerSelected = false;
     player1.marker = "";
     player2.marker = "";
+    player1marker.textContent = `Marker: ${player1.marker}`;
+    player2marker.textContent = `Marker: ${player2.marker}`;
     p1name.value = "";
     p2name.value = "";
     turnDisplayer.textContent = `TURN:`;
