@@ -1,15 +1,9 @@
 # Tic-Tac-Toe
-This is a simple Tic-Tac-Toe game that uses the factory functions to generate players.
+This is a simple Tic-Tac-Toe game that uses factory functions to generate players.
 
 # Preview
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/81805471/125594741-4b3a7783-c460-4cdc-af99-42d3d742f36e.png" alt="Homepage"/>
-</p>
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/81805471/125594864-c7c5f8c1-3241-4428-9631-30c97a8e43e1.png" alt="Details"/>
-</p>
-<p align='center'>
-  <img src='https://user-images.githubusercontent.com/81805471/126028161-55ee3844-6371-4582-b2d1-130e0cdc636f.png' alt='localstorage'/>
+  <img src="https://user-images.githubusercontent.com/81805471/127864381-2f4d6292-1bf2-4e5b-a0cc-f5c5e2f66651.png" alt="Homepage"/>
 </p>
 
 # Table of Contents
@@ -23,11 +17,11 @@ This is a simple Tic-Tac-Toe game that uses the factory functions to generate pl
 - [Footer](#footer)
 
 # Usage
-Simply head to https://naduhz.github.io/odin-project-library/ to begin using the app! Alternatively, if you wish to host the project locally and make edits, you may clone the repository by doing:
+Simply head to https://naduhz.github.io/odin-project-tictactoe/ to begin using the app! Alternatively, if you wish to host the project locally and make edits, you may clone the repository by doing:
 
 ```shell
 cd your-directory-name
-git clone https://github.com/naduhz/odin-project-library.git
+git clone https://github.com/naduhz/odin-project-tictactoe.git
 ```
 
 and launching `index.html`.
@@ -35,13 +29,12 @@ and launching `index.html`.
 [(Back to top)](#table-of-contents)
 
 # Learning Points
-There were 3 main takeaways from this project:
+There were 2 main takeaways from this project:
 
-1. Objects
-2. Order of operations
-3. localStorage()
+1. Factory Functions
+2. Module Patterns
 
-I learnt that objects are great for storing data for items with similar attributes, and the fact that methods can be added to objects makes retrieving the data even easier. The importance of getting the right order of operations was another key takeaway I had from this project as it became painfully apparent that adding event listeners under the wrong code block could result in some very undesired outcomes. For instance, when programming the toggle read button, I constantly encountered a bug where the toggle would affect the read states of all books, which was not what I had intended. It turned out that I had nested the event listener under the event listener for each book, which caused me a great amount of frustration. The localStorage() proved to be useful in maintaining the data that was created. However, a drawback is that data would have to be parsed as JSON objects, and any methods in custom objects would be lost in the process. Thankfully, I could just pass the data back into the constructor function to give the objects the intended attributes and methods.
+I learnt how to use factory functions as an alternative to object constructors, which can be useful as it allows us to export specific methods or properties to be "inherited" by another object. In addition, the module pattern comes in handy as well as it immediately invokes the factory function, causing it to be an instance of itself. The experience building this application was unlike the rest, as I was bogged down by other commitments, and hence a lot of the learning experience was diluted over several days.
 
 [(Back to top)](#table-of-contents)
 
@@ -61,7 +54,7 @@ As this was done within a month of learning Javascript, the code is written in a
 [(Back to top)](#table-of-contents)
 
 # License
-Project License can be found [here](https://github.com/naduhz/odin-project-library/blob/main/LICENSE).
+Project License can be found [here](https://github.com/naduhz/odin-project-tictactoe/blob/main/LICENSE).
 
 [(Back to top)](#table-of-contents)
 
