@@ -1,5 +1,5 @@
 # Tic-Tac-Toe
-This is a simple Tic-Tac-Toe game that uses factory functions to generate players.
+This is a simple Tic-Tac-Toe game that uses factory functions and module patterns.
 
 # Preview
 <p align="center">
